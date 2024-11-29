@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burnt Leaf Cigars Baltimore</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="section">
+            <div class="section-content">
+                <h1>Welcome to Burnt Leaf Cigars Baltimore</h1>
+                <p>Your premier cigar lounge in Randallstown, Maryland</p>
+                <a href="#about" class="cta-button">Discover More</a>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="section-content">
+                <h1>About Us</h1>
+                <p>Located at 9900 Liberty Road, we offer a luxury experience for cigar enthusiasts. Our carefully curated selection of premium cigars and comfortable lounge area provide the perfect atmosphere for relaxation and enjoyment.</p>
+                <p>Hours of Operation:</p>
+                <ul>
+                    <li>Sunday - Thursday: 12 PM - 10 PM</li>
+                    <li>Friday & Saturday: 12 PM - 12 AM</li>
+                </ul>
+                <a href="#events" class="cta-button">Check Our Events</a>
+            </div>
+        </section>
+
+        <section id="events" class="section">
+            <div class="section-content">
+                <h1>Events</h1>
+                <p>Join us for exclusive tastings, live music, and private events. Our calendar is packed with exciting experiences for cigar aficionados and newcomers alike.</p>
+                
+                <div class="video-container">
+                    <video controls>
+                        <source src="{{ url_for('static', filename='videos/burntleafpreview.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                
+                <h2>Upcoming Events:</h2>
+                <ul>
+                    <li>Cigar and Whiskey Pairing Night - Every First Friday</li>
+                    <li>Live Jazz & Blues - Saturday Evenings</li>
+                    <li>Cigar Rolling Demonstration - Monthly</li>
+                </ul>
+                <a href="#contact" class="cta-button">Contact Us for Private Events</a>
+            </div>
+
+        <section id="contact" class="section">
+            <div class="section-content">
+                <h1>Contact Us</h1>
+                <p>We'd love to hear from you! Whether you have questions about our selection, want to book a private event, or just want to say hello, don't hesitate to reach out.</p>
+                <p>Address: 9900 Liberty Road, Randallstown, MD 21133</p>
+                <p>Phone: (XXX) XXX-XXXX</p>
+                <p>Email: info@burntleafcigars.com</p>
+                <p>Follow us on Instagram: <a href="https://instagram.com/burnt_leaf_cigars" target="_blank">@burnt_leaf_cigars</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Burnt Leaf Cigars Baltimore. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Simple script to change header background on scroll
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                document.querySelector('header').style.backgroundColor = 'rgba(0, 0, 0, 1)';
+            } else {
+                document.querySelector('header').style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>
