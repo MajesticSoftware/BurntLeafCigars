@@ -282,7 +282,7 @@ footer {
 
     .instagram-feed-container {
         width: 100%;
-        height: 400px;  /* Reduced height for mobile */
+        height: 500px;  /* Reduced height for mobile */
         margin: 15px auto;
         padding: 0 15px;
         box-sizing: border-box;
@@ -290,7 +290,7 @@ footer {
 
     .instagram-feed-container iframe {
         width: 100% !important;
-        height: 400px !important;
+        height: 500px !important;
         max-width: 100%;
     }
 
@@ -316,6 +316,6 @@ footer {
     }
 
     .instagram-feed-container iframe {
-        height: 350px !important;
+        height: 450px !important;
     }
 }
