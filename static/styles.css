@@ -158,6 +158,8 @@ header ul li a:hover {
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
+    min-height: 100vh; /* Ensure section takes full viewport height */
+    padding-bottom: 100px; /* Add padding to prevent content overlap with footer */
 }
 
 /* Improved bullet point styling */
@@ -224,12 +226,17 @@ header ul li a:hover {
 
 /* Footer */
 footer {
-    background-color: #222;
+    background-color: transparent;
     color: white;
     text-align: center;
     padding: 20px;
     font-size: 14px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
 }
+
 
 /* Responsive design */
 @media (max-width: 768px) {
