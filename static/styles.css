@@ -239,6 +239,7 @@ footer {
 
 
 /* Responsive design */
+/* Responsive design */
 @media (max-width: 768px) {
     header ul {
         flex-direction: column;
@@ -254,11 +255,20 @@ footer {
     
     .section p {
         font-size: 16px;
+        padding: 0 15px;
+    }
+
+    .section ul {
+        padding: 0 20px;
+        margin: 15px 0;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .section ul li {
-        font-size: 16px;
-        padding-left: 25px;
+        font-size: 14px;
+        padding-left: 20px;
+        margin-bottom: 10px;
     }
 
     .section ul li:before {
@@ -269,12 +279,43 @@ footer {
         width: 95%;
         margin: 20px auto;
     }
+
     .instagram-feed-container {
         width: 100%;
-        max-width: 800px;
-        margin: 20px auto;
-        height: 600px;  /* Reduced height */
-        overflow: hidden;  /* Hide overflow */
+        height: 400px;  /* Reduced height for mobile */
+        margin: 15px auto;
+        padding: 0 15px;
+        box-sizing: border-box;
     }
 
+    .instagram-feed-container iframe {
+        width: 100% !important;
+        height: 400px !important;
+        max-width: 100%;
+    }
+
+    /* Adjust About section specific content */
+    #about .section-content {
+        padding: 15px;
+    }
+}
+
+/* Add extra optimization for very small screens */
+@media (max-width: 480px) {
+    .logo-container {
+        width: 150px;
+        height: 150px;
+    }
+
+    .section h1 {
+        font-size: 28px;
+    }
+
+    .instagram-feed-container {
+        height: 350px;
+    }
+
+    .instagram-feed-container iframe {
+        height: 350px !important;
+    }
 }
