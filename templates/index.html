@@ -4,106 +4,463 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Burnt Leaf Cigars Baltimore</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
+    <!-- Age Verification Modal -->
+    <div id="ageVerification" class="age-modal">
+        <div class="age-modal-content">
+            <img src="{{ url_for('static', filename='images/CigarLogo_logopng.png') }}" alt="Burnt Leaf Cigars Logo" class="age-logo">
+            <h2>AGE VERIFICATION</h2>
+            <p>You must be 21 years or older to enter this site.</p>
+            <p>Please verify your age to continue.</p>
+            <div class="age-buttons">
+                <button onclick="verifyAge(true)" class="age-btn verify">I AM 21 OR OLDER</button>
+                <button onclick="verifyAge(false)" class="age-btn deny">I AM UNDER 21</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Membership Inquiry Modal -->
+    <div id="membershipModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeMembershipModal()">&times;</span>
+            <h2>MEMBERSHIP INQUIRY</h2>
+            <p>Interested in becoming a member? Fill out the form below and we'll contact you with more information.</p>
+            <form class="membership-form">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <textarea placeholder="Tell us about your cigar preferences" rows="4"></textarea>
+                <button type="submit" class="cta-button">SUBMIT INQUIRY</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Header -->
     <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="header-content">
+            <div class="logo-header">
+                <img src="{{ url_for('static', filename='images/CigarLogo_logopng.png') }}" alt="Burnt Leaf Cigars">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="nav-link active">HOME</a></li>
+                    <li><a href="#inventory" class="nav-link">INVENTORY</a></li>
+                    <li><a href="#members" class="nav-link">MEMBERS ONLY</a></li>
+                    <li><a href="#events" class="nav-link">EVENTS</a></li>
+                    <li><a href="#gallery" class="nav-link">PHOTO GALLERY</a></li>
+                </ul>
+            </nav>
+            <div class="social-links">
+                <a href="https://facebook.com/burntleafcigars" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com/burnt_leaf_cigars" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
     </header>
 
     <main>
+        <!-- HOME Section -->
         <section id="home" class="section">
             <video autoplay muted loop playsinline id="bgVideo">
                 <source src="{{ url_for('static', filename='videos/Cool_Lounge_video.mp4') }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <div class="section-content">
-                <div class="logo-container">
-                    <img src="{{ url_for('static', filename='images/CigarLogo_logopng.png') }}" alt="Burnt Leaf Cigars Logo">
+                <div class="hero-content">
+                    <h1 class="main-title"><span class="letter-b">B</span>URNT <span class="letter-l">L</span>EAF<br><span class="highlight"><span class="letter-c">C</span>IGARS</span></h1>
+                    <p class="tagline">YOUR PREMIER CIGAR LOUNGE IN BALTIMORE</p>
+                    <p class="address">9900 Liberty Road, Randallstown, MD 21133</p>
+                    <p class="phone">443-272-7206</p>
                 </div>
-                <h1>Welcome to Burnt Leaf Cigars Baltimore</h1>
-                <p>Your premier cigar lounge in Randallstown, Maryland</p>
-                <a href="#about" class="cta-button">Discover More</a>
+                
+                <div class="home-sections">
+                    <div class="home-section">
+                        <h2>ABOUT</h2>
+                        <p>Experience Baltimore county's most distinguished cigar lounge, where tradition meets modern luxury. Our carefully curated selection of premium and infused cigars paired with your own spirits creates a diverse atmosphere. Whether you want to relax or watch your favorite sporting event, Burnt Leaf Cigars is the place to be.</p>
+                    </div>
+                    
+                    <div class="home-section">
+                        <h2>HOURS</h2>
+                        <div class="hours-list">
+                            <p><strong>SUNDAY - THURSDAY</strong><br>12:00 - 10:00</p>
+                            <p><strong>FRIDAY - SATURDAY</strong><br>12:00 - 12:00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="home-section">
+                        <h2>MEMBERSHIP</h2>
+                        <p>Join our exclusive membership program and enjoy premium benefits including private locker storage, member-only events, and discounts on our entire inventory.</p>
+                        <button class="cta-button" onclick="showMembershipInquiry()">INQUIRE ABOUT MEMBERSHIP</button>
+                    </div>
+                    
+                    <div class="home-section">
+                        <h2>CONTACT US</h2>
+                        <form class="contact-form">
+                            <input type="text" placeholder="Name" required>
+                            <input type="email" placeholder="Email" required>
+                            <textarea placeholder="Message" rows="4" required></textarea>
+                            <button type="submit" class="cta-button">SEND MESSAGE</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="about" class="section">
+        <!-- INVENTORY Section -->
+        <section id="inventory" class="section">
             <div class="section-content">
-                <h1>About Us</h1>
-                <p>Located at 9900 Liberty Road, we offer a luxury experience for cigar enthusiasts. Our carefully curated selection of premium cigars and comfortable lounge area provide the perfect atmosphere for relaxation and enjoyment.</p>
-                <p>Hours of Operation:</p>
-                <ul>
-                    <li>Sunday - Thursday: 12 PM - 10 PM</li>
-                    <li>Friday & Saturday: 12 PM - 12 AM</li>
-                </ul>
-                <div class="instagram-feed-container">
-                    <!-- Your Instagram Embed Code Here -->
-                    <iframe src="https://embedsocial.com/api/pro_hashtag/d25f999ad8f57634ad10af1ff82c78eb14d2e8b6" 
-                            width="900px" 
-                            height="600px" 
-                            frameborder="0" 
-                            marginheight="0" 
-                            marginwidth="0">
-                    </iframe>
+                <h1 class="section-title">INVENTORY</h1>
+                <div class="inventory-tabs">
+                    <div class="tab-item active" onclick="showInventoryTab('cigars')">CIGARS</div>
+                    <div class="tab-item" onclick="showInventoryTab('accessories')">ACCESSORIES</div>
+                    <div class="tab-item" onclick="showInventoryTab('clothing')">CLOTHING</div>
                 </div>
-                <a href="#events" class="cta-button">Check Our Events</a>
+                
+                <div id="cigars" class="inventory-content active">
+                    <h2>PREMIUM CIGARS</h2>
+                    <p>Explore our extensive collection of hand-rolled cigars from the world's finest tobacco regions.</p>
+                    <div class="inventory-grid">
+                        <div class="inventory-item">
+                            <h3>DOMINICAN</h3>
+                            <p>Arturo Fuente, Davidoff, La Aurora</p>
+                        </div>
+                        <div class="inventory-item">
+                            <h3>NICARAGUAN</h3>
+                            <p>Padron, Drew Estate, My Father</p>
+                        </div>
+                        <div class="inventory-item">
+                            <h3>CUBAN HERITAGE</h3>
+                            <p>Montecristo, Romeo y Julieta, Cohiba</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="accessories" class="inventory-content">
+                    <h2>CIGAR ACCESSORIES</h2>
+                    <p>Everything you need to enhance your cigar experience.</p>
+                    <div class="inventory-grid">
+                        <div class="inventory-item">
+                            <h3>CUTTERS</h3>
+                            <p>Xikar, Colibri, Palio</p>
+                        </div>
+                        <div class="inventory-item">
+                            <h3>LIGHTERS</h3>
+                            <p>S.T. Dupont, Lotus, Vertigo</p>
+                        </div>
+                        <div class="inventory-item">
+                            <h3>HUMIDORS</h3>
+                            <p>Desktop, Travel, Cabinet</p>
+                        </div>
+                        <div class="inventory-item">
+                            <h3>ASHTRAYS</h3>
+                            <p>Crystal, Ceramic, Portable</p>
+                        </div>
+                        <div class="inventory-item">
+                            <h3>CASES</h3>
+                            <p>Leather cases and travel tubes</p>
+                        </div>
+                        <div class="inventory-item">
+                            <h3>ACCESSORIES</h3>
+                            <p>Keychains, pins, patches</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="clothing" class="inventory-content">
+                    <h2>APPAREL</h2>
+                    <p>Show your style with our exclusive Burnt Leaf merchandise.</p>
+                    <div class="inventory-grid">
+                        <div class="inventory-item">
+                            <h3>T-SHIRTS</h3>
+                            <p>Premium cotton, various designs</p>
+                        </div>
+                        <div class="inventory-item">
+                            <h3>HATS</h3>
+                            <p>Snapbacks, fitted, beanies</p>
+                        </div>
+                        <div class="inventory-item">
+                            <h3>HOODIES</h3>
+                            <p>Comfortable hoodies for all seasons</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- MEMBERS ONLY Section -->
+        <section id="members" class="section">
+            <div class="section-content">
+                <h1 class="section-title">MEMBERS ONLY</h1>
+                <div class="members-content">
+                    <h2>MEMBER COMMUNICATIONS</h2>
+                    <p>Stay connected with exclusive updates, special offers, and member-only events.</p>
+                    
+                    <div class="member-login">
+                        <h3>MEMBER LOGIN</h3>
+                        <form class="login-form">
+                            <input type="email" placeholder="Email Address" required>
+                            <input type="password" placeholder="Password" required>
+                            <button type="submit" class="cta-button">LOGIN</button>
+                        </form>
+                        <p>Not a member? <a href="#home" class="join-link">JOIN TODAY</a></p>
+                    </div>
+                    
+                    <div class="member-benefits">
+                        <h3>MEMBERSHIP BENEFITS</h3>
+                        <ul>
+                            <li>Personal humidified locker</li>
+                            <li>15% discount on all purchases</li>
+                            <li>Priority event reservations</li>
+                            <li>Complimentary quarterly cigar tastings</li>
+                            <li>Access to rare and limited editions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVENTS Section -->
         <section id="events" class="section">
             <div class="section-content">
-                <h1>Events</h1>
-                <p>Join us for exclusive tastings, live music, and private events. Our calendar is packed with exciting experiences for cigar aficionados and newcomers alike.</p>
-                
-                <div class="video-container">
-                    <video width="100%" height="100%" controls autoplay muted loop>
-                        <source src="{{ url_for('static', filename='/videos/rennovatttedBurntLeaf.mp4') }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                <h1 class="section-title">EVENTS</h1>
+                <div class="events-tabs">
+                    <div class="tab-item active" onclick="showEventsTab('calendar')">OUR CALENDAR</div>
+                    <div class="tab-item" onclick="showEventsTab('private')">PRIVATE EVENTS</div>
                 </div>
                 
-                <h2>Upcoming Events:</h2>
-                <ul>
-                    <li>Cigar and Whiskey Pairing Night - Every First Friday</li>
-                    <li>Live Jazz & Blues - Saturday Evenings</li>
-                    <li>Cigar Rolling Demonstration - Monthly</li>
-                </ul>
-                <a href="#contact" class="cta-button">Contact Us for Private Events</a>
+                <div id="calendar" class="events-content active">
+                    <h2>UPCOMING EVENTS</h2>
+                    <div class="events-list">
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="month">DEC</span>
+                                <span class="day">15</span>
+                            </div>
+                            <div class="event-details">
+                                <h3>WHISKEY & CIGAR PAIRING</h3>
+                                <p>Join us for an exclusive tasting featuring premium whiskeys paired with hand-selected cigars.</p>
+                                <p class="event-time">7:00 PM - 10:00 PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="month">DEC</span>
+                                <span class="day">22</span>
+                            </div>
+                            <div class="event-details">
+                                <h3>LIVE JAZZ NIGHT</h3>
+                                <p>Enjoy smooth jazz performances while savoring your favorite cigar.</p>
+                                <p class="event-time">8:00 PM - 11:00 PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="month">DEC</span>
+                                <span class="day">31</span>
+                            </div>
+                            <div class="event-details">
+                                <h3>NEW YEAR'S EVE CELEBRATION</h3>
+                                <p>Ring in the new year with champagne, cigars, and live entertainment.</p>
+                                <p class="event-time">9:00 PM - 2:00 AM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="private" class="events-content">
+                    <h2>HOST YOUR EVENT</h2>
+                    <p>Make your special occasion unforgettable at Burnt Leaf Cigars.</p>
+                    
+                    <div class="private-events-info">
+                        <div class="event-type">
+                            <h3>CORPORATE EVENTS</h3>
+                            <p>Impress clients and reward employees in our sophisticated setting.</p>
+                        </div>
+                        <div class="event-type">
+                            <h3>PRIVATE PARTIES</h3>
+                            <p>Celebrate birthdays, bachelor parties, and special milestones.</p>
+                        </div>
+                        <div class="event-type">
+                            <h3>CIGAR EDUCATION</h3>
+                            <p>Book a private cigar rolling demonstration or tasting class.</p>
+                        </div>
+                    </div>
+                    
+                    <button class="cta-button">REQUEST BOOKING</button>
+                </div>
             </div>
         </section>
-        <section id="contact" class="section">
+
+        <!-- PHOTO GALLERY Section -->
+        <section id="gallery" class="section">
             <div class="section-content">
-                <h1>Contact Us</h1>
-                <p>We'd love to hear from you! Whether you have questions about our selection, want to book a private event, or just want to say hello, don't hesitate to reach out.</p>
-                <p>Address: 9900 Liberty Road, Randallstown, MD 21133</p>
-                <p>Email: info@burntleafcigars.com</p>
-                <p>Follow us on Instagram: <a href="https://instagram.com/burnt_leaf_cigars" target="_blank">@burnt_leaf_cigars</a></p>
+                <h1 class="section-title">PHOTO GALLERY</h1>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='images/CoolCigarCrew.png') }}" alt="Cigar Lounge">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='images/cigar_whiskey_cool.png') }}" alt="Cigar and Whiskey">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='images/livemusiccool.png') }}" alt="Live Music">
+                    </div>
+                    <div class="gallery-item">
+                        <video controls>
+                            <source src="{{ url_for('static', filename='videos/rennovatttedBurntLeaf.mp4') }}" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                
+                <div class="instagram-section">
+                    <h2>FOLLOW US ON INSTAGRAM</h2>
+                    <div class="instagram-feed-container">
+                        <iframe src="https://embedsocial.com/api/pro_hashtag/d25f999ad8f57634ad10af1ff82c78eb14d2e8b6" 
+                                width="100%" 
+                                height="600px" 
+                                frameborder="0" 
+                                marginheight="0" 
+                                marginwidth="0">
+                        </iframe>
+                    </div>
+                </div>
             </div>
-            <footer>
-                <p>&copy; 2024 Burnt Leaf Cigars Baltimore. All rights reserved.</p>
-            </footer>
         </section>
     </main>
 
-    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Burnt Leaf Cigars Baltimore. All rights reserved.</p>
+            <p>9900 Liberty Road, Randallstown, MD 21133 | 443-272-7206</p>
+        </div>
+    </footer>
 
     <script>
-        // Simple script to change header background on scroll
+        // Age Verification
+        function verifyAge(isOfAge) {
+            if (isOfAge) {
+                document.getElementById('ageVerification').style.display = 'none';
+                localStorage.setItem('ageVerified', 'true');
+            } else {
+                window.location.href = 'https://www.google.com';
+            }
+        }
+
+        // Check if age is already verified
+        window.onload = function() {
+            if (localStorage.getItem('ageVerified') !== 'true') {
+                document.getElementById('ageVerification').style.display = 'flex';
+            }
+        };
+
+        // Smooth scroll navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Smooth scroll to section
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = targetSection.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                const headerHeight = document.querySelector('header').offsetHeight;
+                
+                if (window.scrollY >= (sectionTop - headerHeight - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Inventory tabs
+        function showInventoryTab(tabName) {
+            document.querySelectorAll('.inventory-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.inventory-tabs .tab-item').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Events tabs
+        function showEventsTab(tabName) {
+            document.querySelectorAll('.events-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.events-tabs .tab-item').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Header scroll effect
         window.addEventListener('scroll', function() {
             if (window.scrollY > 50) {
-                document.querySelector('header').style.backgroundColor = 'rgba(0, 0, 0, 1)';
+                document.querySelector('header').classList.add('scrolled');
             } else {
-                document.querySelector('header').style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                document.querySelector('header').classList.remove('scrolled');
             }
         });
+
+        // Form submissions
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your submission. We will contact you soon!');
+                form.reset();
+                if (form.classList.contains('membership-form')) {
+                    closeMembershipModal();
+                }
+            });
+        });
+
+        // Membership Modal
+        function showMembershipInquiry() {
+            document.getElementById('membershipModal').style.display = 'flex';
+        }
+
+        function closeMembershipModal() {
+            document.getElementById('membershipModal').style.display = 'none';
+        }
     </script>
 </body>
 </html>
